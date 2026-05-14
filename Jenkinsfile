@@ -5,11 +5,10 @@ pipeline {
         }
     }
 
-    environment {
-        MAVEN_HOME = "/opt/apache-maven-3.9.2"
-        PATH = "${MAVEN_HOME}/bin:${env.PATH}"
-    }
-
+ environment {
+    MAVEN_HOME = "/opt/maven"
+    PATH = "${MAVEN_HOME}/bin:${env.PATH}"
+}
     stages {
 
         stage("clone-code") {
