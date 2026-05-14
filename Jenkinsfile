@@ -5,10 +5,11 @@ pipeline {
         }
     }
 
- environment {
-    MAVEN_HOME = "/opt/maven"
-    PATH = "${MAVEN_HOME}/bin:${env.PATH}"
-}
+    environment {
+        MAVEN_HOME = "/opt/maven"
+        PATH = "/opt/maven/bin:${env.PATH}"
+    }
+
     stages {
 
         stage("clone-code") {
@@ -20,6 +21,8 @@ pipeline {
 
         stage("build") {
             steps {
+                sh 'echo $PATH'
+                sh 'ls -l /opt/maven/bin'
                 sh 'mvn -version'
                 sh 'mvn clean package -DskipTests'
             }
