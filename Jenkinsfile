@@ -1,39 +1,54 @@
-pipeline{
-    agent{
-        node{
+pipeline {
+    agent {
+        node {
             label "maven"
         }
     }
-    stages{
-        stage("clone-code"){
-            steps{
-                git branch: 'main', url: 'https://github.com/Shivani-1998-Devops/Trend-project.git'
-            }
-        }
-        stage("build"){
-            steps{
-                sh "mvn clean package -DskipTests"
-            }
-        }
-    //     stage("test"){
-    //         steps{
-    //             echo "========testing the application========"
-    //         }
-    //     }
-    //     stage("deploy"){
-    //         steps{
-    //             echo "========deploying the application========"
-    //         }
-    //     }
+
+    tools {
+        maven 'Maven-3.1.1'
     }
-    post{
-        always{
+
+    stages {
+
+        stage("clone-code") {
+            steps {
+                git branch: 'main',
+                url: 'https://github.com/Shivani-1998-Devops/Trend-project.git'
+            }
+        }
+
+        stage("build") {
+            steps {
+                sh 'mvn clean package -DskipTests'
+            }
+        }
+
+        // stage("test") {
+        //     steps {
+        //         echo "========testing the application========"
+        //     }
+        // }
+
+        // stage("deploy") {
+        //     steps {
+        //         echo "========deploying the application========"
+        //     }
+        // }
+
+    }
+
+    post {
+
+        always {
             echo "========always========"
         }
-        success{
-            echo "========pipeline executed successfully ========"
+
+        success {
+            echo "========pipeline executed successfully========"
         }
-        failure{
+
+        failure {
             echo "========pipeline execution failed========"
         }
     }
