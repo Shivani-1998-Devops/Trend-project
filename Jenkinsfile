@@ -5,9 +5,10 @@ pipeline {
         }
     }
 
-   environment {
-    PATH = "/opt/apache-maven-3.9.2/bin:$PATH"
-}
+    environment {
+        MAVEN_HOME = "/opt/apache-maven-3.9.2"
+        PATH = "${MAVEN_HOME}/bin:${env.PATH}"
+    }
 
     stages {
 
@@ -20,22 +21,9 @@ pipeline {
 
         stage("build") {
             steps {
+                sh 'mvn -version'
                 sh 'mvn clean package -DskipTests'
             }
         }
-
-        // stage("test") {
-        //     steps {
-        //         echo "========testing the application========"
-        //     }
-        // }
-
-        // stage("deploy") {
-        //     steps {
-        //         echo "========deploying the application========"
-        //     }
-        // }
-
     }
-
 }
