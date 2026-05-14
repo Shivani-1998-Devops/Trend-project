@@ -12,6 +12,14 @@ pipeline {
 
     stages {
 
+        stage("debug") {
+            steps {
+                sh 'hostname -I'
+                sh 'hostname'
+                sh 'pwd'
+            }
+        }
+
         stage("clone-code") {
             steps {
                 git branch: 'main',
