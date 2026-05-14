@@ -5,9 +5,9 @@ pipeline {
         }
     }
 
-    tools {
-        maven 'maven'
-    }
+   environment {
+    PATH = "/opt/apache-maven-3.9.2/bin:$PATH"
+}
 
     stages {
 
@@ -38,18 +38,4 @@ pipeline {
 
     }
 
-    post {
-
-        always {
-            echo "========always========"
-        }
-
-        success {
-            echo "========pipeline executed successfully========"
-        }
-
-        failure {
-            echo "========pipeline execution failed========"
-        }
-    }
 }
