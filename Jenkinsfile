@@ -2,17 +2,29 @@ pipeline {
     agent any
 
     environment {
-        PATH = "/opt/apache-maven-3.9.2/bin:$PATH"
+        PATH = "/opt/maven/bin:$PATH"
     }
 
     stages {
-        stage("build") {
+
+        stage('Git Checkout') {
             steps {
-                echo "----------- build started ----------"
+                echo "----------- Git Checkout Started ----------"
+
+                git branch: 'main',
+                url: 'https://github.com/Shivani-1998-Devops/Trend-project.git'
+
+                echo "----------- Git Checkout Completed ----------"
+            }
+        }
+
+        stage('Build') {
+            steps {
+                echo "----------- Build Started ----------"
 
                 sh 'mvn clean deploy -Dmaven.test.skip=true'
 
-                echo "----------- build completed ----------"
+                echo "----------- Build Completed ----------"
             }
         }
     }
