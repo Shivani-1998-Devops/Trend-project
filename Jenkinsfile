@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        PATH = "/opt/maven/bin:$PATH"
+        PATH = "/opt/apache-maven-3.9.2/bin:${env.PATH}"
     }
 
     stages {
@@ -22,6 +22,7 @@ pipeline {
             steps {
                 echo "----------- Build Started ----------"
 
+                sh 'mvn -version'
                 sh 'mvn clean deploy -Dmaven.test.skip=true'
 
                 echo "----------- Build Completed ----------"
