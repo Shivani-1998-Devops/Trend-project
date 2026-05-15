@@ -9,7 +9,7 @@ pipeline {
 
         stage('Git Checkout') {
             steps {
-                echo "----------- Git Checkout Started ----------"
+                echo "----------- Git Checkout Started here ----------"
 
                 git branch: 'main',
                 url: 'https://github.com/Shivani-1998-Devops/Trend-project.git'
